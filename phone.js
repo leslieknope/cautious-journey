@@ -1,6 +1,5 @@
 var phonePrice = 25
 const TAX = .09
-var balance = 412
 var numPhones = 0
 var numAccessories = 0
 var accessoryPrice = 6
@@ -10,36 +9,44 @@ var purchaseTotal = 0
 
 //calculate purchase amount
 function calcCost(n){
-    return function() {return n + n * TAX }
+    return n + n * TAX;
 }
 
 //calculate phone purchase amout
 var phoneCost = calcCost(phonePrice)
-var phoneCostFinal = phoneCost()
 
 //calculate accessory purchase amount
 var accessoryCost = calcCost(accessoryPrice)
-var accessoryCostFinal = accessoryCost()
 //debug helper, not needed for final product
-console.log(phoneCostFinal);
-console.log(accessoryCostFinal);
+console.log(phoneCost);
+console.log(accessoryCost);
 
+//calculate balance
+function getBalance (balance) {
+    var currentBalance;
+    currentBalance = balance;
+    return currentBalance;
+}
 
+//initialize Balance
+var curBalance = getBalance(400);
+console.log(curBalance);
 
 do{
 //purchase phones
-    if(balance >= threshold + phoneCostFinal){  
+    if(curBalance >= threshold + phoneCost){  
     numPhones++;
-    purchaseTotal += phoneCostFinal;
-    (function () { balance = balance - phoneCostFinal})();
-    console.log("You added a phone to your order. Phone cost is $" + phoneCostFinal + "  Your remaining balance is  $" + balance.toFixed(2));
+    purchaseTotal += phoneCost;
+    curBalance = getBalance(curBalance - phoneCost);
+    console.log("You added a phone to your order. Phone cost is $" + phoneCost + "  Your remaining balance is  $" + curBalance.toFixed(2));
     }
-    if(threshold + accessoryCost()){
+    if(curBalance >= threshold + accessoryCost){
     numAccessories++;
-    (function () { balance = balance - accessoryCost()})();
-    console.log("You added an accessory to your order. Accessory cost is $" + accessoryCostFinal + " Your remaining balance is  $" + balance.toFixed(2));
+    purchaseTotal += accessoryCost;
+    curBalance = getBalance(curBalance - accessoryCost);
+    console.log("You added an accessory to your order. Accessory cost is $" + accessoryCost + " Your remaining balance is  $" + curBalance.toFixed(2));
     }
 }
-while(balance > threshold + accessoryCost())
+while(curBalance > threshold + accessoryCost)
 
-console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + balance.toFixed(2));
+console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + curBalance.toFixed(2));
