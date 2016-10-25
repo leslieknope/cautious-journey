@@ -1,6 +1,6 @@
 var phonePrice = 25
 const TAX = .09
-var balance = 412
+var initialBalance = 412
 var numPhones = 0
 var numAccessories = 0
 var accessoryPrice = 6
@@ -24,22 +24,30 @@ var accessoryCostFinal = accessoryCost()
 console.log(phoneCostFinal);
 console.log(accessoryCostFinal);
 
+//calculate balance
+//(function (cost) { balance = balance - cost})();
+function getBalance (balance, cost) {
+    balance = balance - cost;
+}
+
+//initialize Balance
+var curBalance = getBalance(412, 0);
 
 
 do{
 //purchase phones
-    if(balance >= threshold + phoneCostFinal){  
+    if(curBalance >= threshold + phoneCostFinal){  
     numPhones++;
     purchaseTotal += phoneCostFinal;
-    (function () { balance = balance - phoneCostFinal})();
-    console.log("You added a phone to your order. Phone cost is $" + phoneCostFinal + "  Your remaining balance is  $" + balance.toFixed(2));
+    curBalance = getBalance(balance, phoneCostFinal);
+    console.log("You added a phone to your order. Phone cost is $" + phoneCostFinal + "  Your remaining balance is  $" + curBalance.toFixed(2));
     }
-    if(threshold + accessoryCost()){
-    numAccessories++;
-    (function () { balance = balance - accessoryCost()})();
-    console.log("You added an accessory to your order. Accessory cost is $" + accessoryCostFinal + " Your remaining balance is  $" + balance.toFixed(2));
-    }
+    // if(threshold + accessoryCost()){
+    // numAccessories++;
+    // (function () { balance = balance - accessoryCost()})();
+    // console.log("You added an accessory to your order. Accessory cost is $" + accessoryCostFinal + " Your remaining balance is  $" + balance.toFixed(2));
+    // }
 }
-while(balance > threshold + accessoryCost())
+while(curBalance > threshold + accessoryCost())
 
-console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + balance.toFixed(2));
+console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + curBalance.toFixed(2));
