@@ -3,7 +3,7 @@ const TAX = .09
 var numPhones = 0
 var numAccessories = 0
 var accessoryPrice = 6
-var threshold = 50
+//var threshold = 50
 var purchaseTotal = 0
 
 
@@ -22,31 +22,34 @@ console.log(phoneCost);
 console.log(accessoryCost);
 
 //calculate balance
-function getBalance (balance) {
-    var currentBalance;
-    currentBalance = balance;
-    return currentBalance;
-}
+// function getBalance (balance) {
+//     var currentBalance;
+//     currentBalance = balance;
+//     return currentBalance;
+// }
 
 //initialize Balance
-var curBalance = getBalance(400);
-console.log(curBalance);
+// var curBalance = getBalance(400);
+// console.log(curBalance);
+
+(function buyPhones(balance, threshold){
 
 do{
 //purchase phones
-    if(curBalance >= threshold + phoneCost){  
+    if(balance >= threshold + phoneCost){  
     numPhones++;
     purchaseTotal += phoneCost;
-    curBalance = getBalance(curBalance - phoneCost);
-    console.log("You added a phone to your order. Phone cost is $" + phoneCost + "  Your remaining balance is  $" + curBalance.toFixed(2));
+    balance = balance - phoneCost;
+    console.log("You added a phone to your order. Phone cost is $" + phoneCost + "  Your remaining balance is  $" + balance.toFixed(2));
     }
-    if(curBalance >= threshold + accessoryCost){
+    if(balance >= threshold + accessoryCost){
     numAccessories++;
     purchaseTotal += accessoryCost;
-    curBalance = getBalance(curBalance - accessoryCost);
-    console.log("You added an accessory to your order. Accessory cost is $" + accessoryCost + " Your remaining balance is  $" + curBalance.toFixed(2));
+    balance = balance - accessoryCost;
+    console.log("You added an accessory to your order. Accessory cost is $" + accessoryCost + " Your remaining balance is  $" + balance.toFixed(2));
     }
 }
-while(curBalance > threshold + accessoryCost)
+while(balance > threshold + accessoryCost)
 
-console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + curBalance.toFixed(2));
+console.log("Total phones purchased: " + numPhones + "  Total Accessories Purchased: " + numAccessories + "  account balance $" + balance.toFixed(2));
+})(400, 50)
