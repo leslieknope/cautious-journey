@@ -116,6 +116,32 @@ Write a function that prints what books you have read and havenâ€™t read. Hereâ€
         return x < y ?  x :  y;
     }
 
+    function arrayCompare(array) {
+        for (var i = 1; i < arguments.length; i++) {
+        if (array.indexOf(arguments[i]) === -1) {
+            console.log(arguments[i] + " is not in array.");
+        } else {
+            console.log(arguments[i] + " is in array.")
+        }
+        }
+    }
+
+    function isPrime(number) {
+        if (typeof number !== 'number' || !Number.isInteger(number)) {
+            return false;
+        }
+
+        if (number < 2) {
+            return false;
+        }
+        
+        if (number === 2) {
+            return true;
+        } else if (number % 2 === 0) {
+            return false;
+        }
+    }
+
     (function(exports) {
     var names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -149,6 +175,8 @@ exports.readIt = readIt;
 exports.countBs = countBs;
 exports.countChar = countChar;
 exports.isEven = isEven;
+exports.arrayCompare = arrayCompare;
+exports.isPrime = isPrime;
 exports.min = min;
 exports.Person = Person;
 
