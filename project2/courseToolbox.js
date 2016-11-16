@@ -127,6 +127,19 @@ Write a function that prints what books you have read and havenâ€™t read. Hereâ€
     };
     })(typeof window === 'undefined' || window === null ? global.weekDay = {} : this.weekDay = {} );
 
+    var Person = function() {};
+
+        Person.prototype.initialize = function(name, age)
+        {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.describe = function()
+        {
+            return this.name + ", " + this.age + " years old.";
+        }
+
 
 exports.weekDay = weekDay;
 exports.createdBy = 'Susan Lee';
@@ -137,9 +150,11 @@ exports.countBs = countBs;
 exports.countChar = countChar;
 exports.isEven = isEven;
 exports.min = min;
+exports.Person = Person;
 
 })(typeof window === 'undefined' || window === null ? global.classToolbox = {} : this.classToolbox = {});
 
+//tests
 console.log("created by " + classToolbox.createdBy + "  created for " + classToolbox.createdFor + " created on " + classToolbox.createdWhen);
 classToolbox.readIt();
 console.log("Num of Bs in this string alsdkfjBas;ldkfjb is " + classToolbox.countBs("alsdkfjBas;ldkfjb"));
@@ -147,3 +162,5 @@ console.log("Num of f's in asdf is " + classToolbox.countChar("asdf", "f"));
 console.log("3 is even? " + classToolbox.isEven(3));
 console.log("4 is even? " + classToolbox.isEven(3));
 console.log("the 3rd weekday is " + classToolbox.weekDay.name(3));
+newGuy = new classToolbox.Person.prototype.initialize("new guy", 27)
+console.log("the new guys name is " + newGuy.name + "." + " He is " + newGuy.age + " years old")
