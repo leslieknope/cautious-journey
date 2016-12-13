@@ -5,7 +5,7 @@ var results = document.getElementById("results");
 var mapArea = document.getElementById("map")
 
 var areaMap = L.map('map').fitBounds([
-    [45.601140, -122.801056],
+    [45.542001, -122.801056],
     [45.458945, -122.580814]
 ]);
 
@@ -35,8 +35,6 @@ dataButton.addEventListener("click", function() {
         if(selection.value === "Any"){
             
             for(var i=0; i< data.data.bikes.length; i++){
-                htmlString += '<p>' + data.data.bikes[i]['bike_id'] + '</p>'
-                htmlString += '<p>' + data.data.bikes[i]['name'] + '</p>'
                 var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
             
             }
@@ -47,14 +45,11 @@ dataButton.addEventListener("click", function() {
         if(selection.value === "Sneaker"){
             for(var i=0; i< data.data.bikes.length; i++){
                 if(data.data.bikes[i]['name'].search("BIKETOWN") === -1){
-                htmlString += '<p>' + data.data.bikes[i]['bike_id'] + '</p>'
-                htmlString += '<p>' + data.data.bikes[i]['name'] + '</p>'
                 var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
                 }  
             
             }
-            results.innerHTML = htmlString + '<div><button id="getMap">Map It?</button></div>';
-            mapButton.hidden = "false"
+            results.innerHTML = htmlString 
         };
       
     }
