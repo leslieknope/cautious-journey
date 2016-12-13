@@ -42,14 +42,14 @@ dataButton.addEventListener("click", function() {
             
             }
             htmlString += '<h3>Total Free Bikes available ' + totalBikes + '</h3>'
-            results.innerHTML = htmlString + '<div><button id="getMap">Map It?</button></div>';
+            results.innerHTML = htmlString;
         };
         
         if(selection.value === "Sneaker"){
             for(var i=0; i< data.data.bikes.length; i++){
                 if(data.data.bikes[i]['name'].search("BIKETOWN") === -1){
                 var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
-                numSneakerBike ++;
+                numSneakerBikes++;
                 }  
             
             }
