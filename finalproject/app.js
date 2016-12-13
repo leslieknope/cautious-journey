@@ -5,8 +5,8 @@ var results = document.getElementById("results");
 var mapArea = document.getElementById("map")
 
 var areaMap = L.map('map').fitBounds([
-    [45.6077682, -122.9945375],
-    [45.4289472, -122.4139835]
+    [45.601140, -122.801056],
+    [45.458945, -122.580814]
 ]);
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,8 +35,9 @@ dataButton.addEventListener("click", function() {
         if(selection.value === "Any"){
             
             for(var i=0; i< data.data.bikes.length; i++){
-                htmlString += '<p>' + JSON.stringify(data.data.bikes[i]['bike_id']) + '</p>'
-                htmlString += '<p>' + JSON.stringify(data.data.bikes[i]['name']) + '</p>'
+                htmlString += '<p>' + data.data.bikes[i]['bike_id'] + '</p>'
+                htmlString += '<p>' + data.data.bikes[i]['name'] + '</p>'
+                var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
             
             }
             results.innerHTML = htmlString + '<div><button id="getMap">Map It?</button></div>';
